@@ -1,7 +1,4 @@
-{{/* 
-todo: 1. 安装exporter-->redis✔ 2. 程序启动顺序控制✔-->通过init容器类等待对应的服务启动 3. service名动态配置✔ 4.安装prometheus? 5.安装grafana? 6. 外部configmap重写helm自带的configmap
-vim: set filetype=mustache: 
-*/}}
+{{/* vim: set filetype=mustache: */}}
 {{/*
 Expand the name of the chart.
 */}}
@@ -63,26 +60,4 @@ Create the name of the service account to use
 {{- else }}
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
-{{- end }}
-
-
-{{/*
-Create the common labels.
-*/}}
-{{- define "chirpstack.standardLabels" -}}
-release: {{ .Release.Name }}
-{{- end }}
-
-{{/*
-Create the match labels.
-*/}}
-{{- define "chirpstack.matchLabels" -}}
-release: {{ .Release.Name }}
-{{- end }}
-
-{{/*
-Create the template labels.
-*/}}
-{{- define "chirpstack.template.labels" -}}
-release: {{ .Release.Name }}
 {{- end }}

@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: redis
+  namespace: {{ .Release.Namespace }}
+spec:
+  selector:
+    matchLabels:
+      app: redis
+  serviceName: "redis"
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: redis
+    spec:
+      terminationGracePeriodSeconds: 30 #default 30
+      containers:
+      - name: redis
+        image: redis:6.0.9
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 6379
+          name: redis
+        volumeMounts:
+        - name: redis-pvc
+          mountPath: /data
+#          subPath: postgres
+  volumeClaimTemplates:
+  - metadata:
+      name: redis-pvc
+    spec:
+      accessModes: {{ .Values.redis.spec.volumeClaimTemplates.spec.accessModes }} #["ReadWriteOnce"]
+      storageClassName: {{ .Values.redis.spec.volumeClaimTemplates.spec.storageClassName }}
+      resources:
+        requests:
+          storage: {{ .Values.redis.spec.volumeClaimTemplates.spec.resources.requests.storage }}

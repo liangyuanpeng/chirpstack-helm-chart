@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis-exporter
+  namespace: {{ .Release.Namespace }}
+spec:
+  selector:
+    matchLabels:
+      app: redis-exporter
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: redis-exporter
+    spec:
+      terminationGracePeriodSeconds: 30
+      containers:
+      - name: redis-exporter
+        image: oliver006/redis_exporter:v1.14.0
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: redishost
+          value: {{ .Values.redis.service.name | default "redis"  }}

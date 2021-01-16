@@ -1,2 +1,3 @@
 # chirpstack-helm-chart
-helm chart for chirpstack
+helm chart for chirpstack, still development
+
