@@ -18,7 +18,7 @@ data:
     server="tcp://mosquitto.{{ .Release.Namespace }}:1883"
 
     [application_server.api]
-    public_host="chirpstack-application-server:8001"
+    public_host="chirpstack-as.{{ .Release.Namespace }}:8001"
 
     [metrics]
     timezone="Local"

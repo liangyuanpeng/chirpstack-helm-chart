@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: postgres-config
+  name: {{ .Release.Name }}-postgres-config
   namespace: {{ .Release.Namespace }}
   labels:
     app: pgsql

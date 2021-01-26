@@ -22,34 +22,33 @@ data:
     net_id="000000"
 
     [network_server.band]
-    name="EU868"
+    name="CN_470_510"  #EU868
 
     [network_server.network_settings]
+      # [[network_server.network_settings.extra_channels]]
+      # frequency=867100000
+      # min_dr=0
+      # max_dr=5
 
-      [[network_server.network_settings.extra_channels]]
-      frequency=867100000
-      min_dr=0
-      max_dr=5
+      # [[network_server.network_settings.extra_channels]]
+      # frequency=867300000
+      # min_dr=0
+      # max_dr=5
 
-      [[network_server.network_settings.extra_channels]]
-      frequency=867300000
-      min_dr=0
-      max_dr=5
+      # [[network_server.network_settings.extra_channels]]
+      # frequency=867500000
+      # min_dr=0
+      # max_dr=5
 
-      [[network_server.network_settings.extra_channels]]
-      frequency=867500000
-      min_dr=0
-      max_dr=5
+      # [[network_server.network_settings.extra_channels]]
+      # frequency=867700000
+      # min_dr=0
+      # max_dr=5
 
-      [[network_server.network_settings.extra_channels]]
-      frequency=867700000
-      min_dr=0
-      max_dr=5
-
-      [[network_server.network_settings.extra_channels]]
-      frequency=867900000
-      min_dr=0
-      max_dr=5
+      # [[network_server.network_settings.extra_channels]]
+      # frequency=867900000
+      # min_dr=0
+      # max_dr=5
 
     [network_server.gateway.backend.mqtt]
     server="tcp://mosquitto.{{ .Release.Namespace }}:1883"
@@ -71,7 +70,8 @@ data:
       api_timing_histogram=true
 
     [join_server.default]
-    server="http://chirpstack-as.{{ .Release.Namespace }} :8003"
+    server="http://chirpstack-as.{{ .Release.Namespace }}:8003"
+    
 
 #    [geolocation_server]
 #    server="chirpstack-geolocation-server:8005"

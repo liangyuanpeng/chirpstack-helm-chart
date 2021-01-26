@@ -34,7 +34,7 @@ spec:
       volumes:
       - name: pginit
         configMap:
-          name: pginit
+          name: {{ .Release.Name }}-postgres-init
   volumeClaimTemplates:
   - metadata:
       name: pgsql-pvc

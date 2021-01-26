@@ -8,11 +8,13 @@ metadata:
 spec:
   selector:
     matchLabels:
+      app: chirpstack-as
       {{- include "chirpstack.matchLabels" . | nindent 6 }}
   replicas: 1
   template:
     metadata:
       labels:
+        app: chirpstack-as
         {{- include "chirpstack.template.labels" . | nindent 8 }}
     spec:
       terminationGracePeriodSeconds: 30

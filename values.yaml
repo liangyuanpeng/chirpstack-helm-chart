@@ -8,6 +8,10 @@ appserver:
   service:
     name: chirpstack-as
 
+networkserver:
+  service: 
+    name: chirpstack-ns
+
 postgresql:
   service:
     name: pgsql
