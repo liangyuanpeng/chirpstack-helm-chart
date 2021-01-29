@@ -1,5 +1,11 @@
 favoriteDrink: coffee2
 
+
+gatewaybridge:
+  service:
+    name: gateway-bridge
+    enable: false
+
 mosquitto:
   service:
     name: mosquitto
