@@ -39,8 +39,8 @@ spec:
   - metadata:
       name: pgsql-pvc
     spec:
-      accessModes: ["ReadWriteOnce"]
-      storageClassName: "longhorn"
+      accessModes: {{ .Values.redis.spec.volumeClaimTemplates.spec.accessModes }} #["ReadWriteOnce"]
+      storageClassName: {{ .Values.redis.spec.volumeClaimTemplates.spec.storageClassName }}
       resources:
         requests:
-          storage: 100M
+          storage: {{ .Values.redis.spec.volumeClaimTemplates.spec.resources.requests.storage }}

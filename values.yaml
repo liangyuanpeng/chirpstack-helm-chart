@@ -21,6 +21,14 @@ networkserver:
 postgresql:
   service:
     name: pgsql
+  spec:
+    volumeClaimTemplates:
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        storageClassName: "longhorn"
+        resources:
+          requests:
+            storage: 50M
 
 redis:
   service:

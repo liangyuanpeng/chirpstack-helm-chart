@@ -32,6 +32,9 @@ $ cd chirpstack-helm-chart/
 $ helm install chirpstack .   
 ```  
 
+`Note: Use longhorn of storageClass by default. `
+
+
 ```bash
 $ kubectl get po 
 # can get this pods
