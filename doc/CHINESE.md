@@ -1,5 +1,5 @@
 # chirpstack-helm-chart
-开源lorawan server 项目chirpstack的helm chart [中文](doc/CHINESE.md)
+开源lorawan server 项目chirpstack的helm chart [english](../README.md)
 
 # 如何贡献
 如果你想对这个项目进行贡献可以点击`fork`按钮`fork`这个项目并且发起`PR`
