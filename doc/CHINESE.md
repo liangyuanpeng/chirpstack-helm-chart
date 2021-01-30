@@ -1,13 +1,13 @@
 # chirpstack-helm-chart
-helm chart for chirpstack of lorawan server [中文](doc/CHINESE.md)
+开源lorawan server 项目chirpstack的helm chart [中文](doc/CHINESE.md)
 
-# How to contribute
-If you would like to contribute code to this project, fork the repository and send a pull request.
+# 如何贡献
+如果你想对这个项目进行贡献可以点击`fork`按钮`fork`这个项目并且发起`PR`
 
-## Fork
-Before contributing, you need to fork chirpstack-helm-chart to your GitHub repository.
+## Fork  
+贡献的准备工作:`Fork`这个项目.
 
-## Contribution flow  
+## 贡献流程  
 
 ```bash
 $ git remote add chirpstack-helm-chart git@github.com:liangyuanpeng/chirpstack-helm-chart.git
@@ -23,7 +23,7 @@ $ git add [your change files]
 $ git commit -sm "xxx"
 $ git push origin your_branch  
 ```  
-# install for helm chart
+# 安装helm chart
 
 ```bash
 $ git clone https://github.com/liangyuanpeng/chirpstack-helm-chart.git  
@@ -34,7 +34,7 @@ $ helm install chirpstack .
 
 ```bash
 $ kubectl get po 
-# can get this pods
+# 执行命令后可以看到以下pod
 NAME                              READY   STATUS    RESTARTS   AGE
 chirpstack-as-84b68cb7fd-zgs5j    1/1     Running   0          45s
 chirpstack-ns-7d9b9867f-zftn6     1/1     Running   0          45s
@@ -46,7 +46,7 @@ redis-exporter-64f8bf4f46-2rcgl   1/1     Running   0          45s
 
 ```bash
 $ kubectl get svc
-# can get this svc
+# 执行命令后可以看到以下svc
 NAME             TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)                      AGE
 chirpstack-as    ClusterIP   10.98.227.61     <none>        8080/TCP,8001/TCP,8003/TCP   77s
 chirpstack-ns    ClusterIP   10.108.182.238   <none>        8000/TCP                     77s
@@ -58,7 +58,7 @@ redis-exporter   ClusterIP   10.106.66.131    <none>        9121/TCP            
 
 ```bash
 $ kubectl get pvc
-# can get this pvc
+# 执行命令后可以看到以下pvc
 NAME                               STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   AGE
 pgsql-pvc-pgsql-0                  Bound    pvc-c1c6adf4-32ef-4431-bd6a-3825a6ef408c   96Mi       RWO            longhorn       3d
 redis-pvc-redis-0                  Bound    pvc-e464d0e8-e04a-4958-858e-5efef1aeba9c   48Mi       RWO            longhorn       3d
@@ -66,21 +66,20 @@ redis-pvc-redis-0                  Bound    pvc-e464d0e8-e04a-4958-858e-5efef1ae
 
 ```bash
 $ helm list
-# can get chirpstach-helm-chart
+# 执行命令后可以看到以下chart
 NAME            NAMESPACE       REVISION        UPDATED                                 STATUS          CHART                           APP VERSION
 chirpstack      default         1               2021-01-29 16:11:48.984574857 +0800 CST deployed        chirpstack-helm-chart-0.1.0     1.16.0
-```  
-
-# port-forward for application-server
+```   
+# 暴露application-server的svc，访问application-server
 ```bash
 kubectl port-forward svc/chirpstack-as 8080:8080 --address 0.0.0.0
 ```
 
-# setting for network-servers on application-server
+# 在application-server上设置network-server
 
-you can set value to `chirpstack-ns.{namespace}:8000` or `chirpstack-ns.{namespace}.svc.cluster.local:8000`
+你可以设置为 `chirpstack-ns.{namespace}:8000` 或者 `chirpstack-ns.{namespace}.svc.cluster.local:8000`
 
-#  you can use expose svc if you use gateway-bridge
+#  如果你用了gateway-bridge这个组件的话，可以用下面的命令把svc暴露出来
 
 ```
 kubectl expose deploy gateway-bridge --port 1700 --target-port=1700 --protocol=UDP --name udpservice --type=NodePort  
