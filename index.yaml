@@ -3,12 +3,12 @@ entries:
   chirpstack-helm-chart:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2021-09-15T15:48:01.960717844+08:00"
+    created: "2021-09-15T18:37:21.934519641+08:00"
     description: A Helm chart for Kubernetes
-    digest: 4821ed4f66b52a8e95de2466c2f61e5b84337aa223f5754c9a0d3a6ee65c3364
+    digest: 3cb34cbe3ace0bba277089d2af4c7be391e80dddb3dfc9edf0b2ae60092a667f
     name: chirpstack-helm-chart
     type: application
     urls:
-    - tmp/chirpstack-helm-chart-0.1.0.tgz
+    - packages/chirpstack-helm-chart-0.1.0.tgz
     version: 0.1.0
-generated: "2021-09-15T15:48:01.959371401+08:00"
+generated: "2021-09-15T18:37:21.93354089+08:00"
