@@ -44,3 +44,8 @@ exporter:
   redis:
     service:
       name: redis-exporter
+
+chirpstack:
+  common:
+    nodeSelector:
+      enabled: false

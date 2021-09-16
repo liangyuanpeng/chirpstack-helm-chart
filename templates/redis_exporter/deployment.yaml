@@ -13,6 +13,10 @@ spec:
       labels:
         app: redis-exporter
     spec:
+{{- if .Values.chirpstack.common.nodeSelector.enabled }}
+      nodeSelector:
+        {{- include "chirpstack.nodeSelector" . | nindent 8 }}
+{{- end }}
       terminationGracePeriodSeconds: 30
       initContainers:
         - name: wait-redis

@@ -86,3 +86,10 @@ Create the template labels.
 {{- define "chirpstack.template.labels" -}}
 release: {{ .Release.Name }}
 {{- end }}
+
+{{/*
+Create the common nodeSelector.
+*/}}
+{{- define "chirpstack.nodeSelector" -}}
+release: {{ .Release.Name }}
+{{- end }}

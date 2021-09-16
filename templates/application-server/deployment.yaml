@@ -17,6 +17,10 @@ spec:
         app: chirpstack-as
         {{- include "chirpstack.template.labels" . | nindent 8 }}
     spec:
+{{- if .Values.chirpstack.common.nodeSelector.enabled }}
+      nodeSelector:
+        {{- include "chirpstack.nodeSelector" . | nindent 8 }}
+{{- end }}
       terminationGracePeriodSeconds: 30
       initContainers:
       - name: wait-redis
