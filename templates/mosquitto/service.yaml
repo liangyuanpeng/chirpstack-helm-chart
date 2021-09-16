@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ .Values.mosquitto.service.name | default "mosquitto"  }}
+  name: {{ .Release.Name }}-{{ .Values.mosquitto.service.name | default "mosquitto"  }}
   namespace: {{ .Release.Namespace }}
   labels:
     app: mosquitto

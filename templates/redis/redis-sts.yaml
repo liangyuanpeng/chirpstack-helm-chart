@@ -1,18 +1,20 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: redis
+  name: {{ .Release.Name }}-redis
   namespace: {{ .Release.Namespace }}
 spec:
   selector:
     matchLabels:
       app: redis
-  serviceName: "redis"
+      release: {{ .Release.Name }}
+  serviceName: {{ .Release.Name }}-{{ .Values.redis.service.name | default "redis"  }}
   replicas: 1
   template:
     metadata:
       labels:
         app: redis
+        release: {{ .Release.Name }}
     spec:
       terminationGracePeriodSeconds: 30 #default 30
       containers:

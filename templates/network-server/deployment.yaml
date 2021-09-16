@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: chirpstack-ns
+  name: {{ .Release.Name }}-ns
   namespace: {{ .Release.Namespace }}
 spec:
   selector:
@@ -20,15 +20,15 @@ spec:
       - name: wait-redis
         image: busybox:1.31
         imagePullPolicy: IfNotPresent
-        command: ['sh', '-c', 'until nslookup {{ .Values.redis.service.name }}; do echo waiting for redis; sleep 2; done;']
+        command: ['sh', '-c', 'until nslookup {{ .Release.Name }}-{{ .Values.redis.service.name }}; do echo waiting for redis; sleep 2; done;']
       - name: wait-mqtt
         image: busybox:1.31
         imagePullPolicy: IfNotPresent
-        command: ['sh', '-c', 'until nslookup {{ .Values.mosquitto.service.name }}; do echo waiting for mqtt; sleep 2; done;']
+        command: ['sh', '-c', 'until nslookup {{ .Release.Name }}-{{ .Values.mosquitto.service.name }}; do echo waiting for mqtt; sleep 2; done;']
       - name: wait-postgresql
         image: busybox:1.31
         imagePullPolicy: IfNotPresent
-        command: ['sh', '-c', 'until nslookup {{ .Values.postgresql.service.name }}; do echo waiting for postgresql; sleep 2; done;']
+        command: ['sh', '-c', 'until nslookup {{ .Release.Name }}-{{ .Values.postgresql.service.name }}; do echo waiting for postgresql; sleep 2; done;']
       containers:
       - name: chirpstack-ns
         image: chirpstack/chirpstack-network-server:3

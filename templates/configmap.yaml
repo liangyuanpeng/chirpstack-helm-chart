@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: {{ .Release.Name }}-configmap
-data:
-  myvalue: {{  .Values.favoriteDrink | default "nothing" |quote | upper }}
-  {{ if and .Values.favoriteDrink (eq .Values.favoriteDrink "coffee") }}mug: true{{ end }}

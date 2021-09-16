@@ -13,16 +13,16 @@ data:
     # pgsql-0.pgsql.default.svc.cluster.local
 
     [postgresql]
-    dsn="postgres://chirpstack_ns:chirpstack_ns@pgsql.{{ .Release.Namespace }}/chirpstack_ns?sslmode=disable"
+    dsn="postgres://chirpstack_ns:chirpstack_ns@{{ .Release.Name }}-{{ .Values.postgresql.service.name | default "pgsql"  }}.{{ .Release.Namespace }}/chirpstack_ns?sslmode=disable"
 
     [redis]
-    url="redis://redis.{{ .Release.Namespace }}:6379"
+    url="redis://{{ .Release.Name }}-{{ .Values.redis.service.name | default "redis"  }}.{{ .Release.Namespace }}:6379"
 
     [network_server]
     net_id="000000"
 
     [network_server.band]
-    name="CN_470_510"  #EU868
+    name="CN_470_510"
 
     [network_server.network_settings]
       # [[network_server.network_settings.extra_channels]]
@@ -51,7 +51,7 @@ data:
       # max_dr=5
 
     [network_server.gateway.backend.mqtt]
-    server="tcp://mosquitto.{{ .Release.Namespace }}:1883"
+    server="tcp://{{ .Release.Name }}-{{ .Values.mosquitto.service.name | default "mosquitto"  }}.{{ .Release.Namespace }}:1883"
 
     [metrics]
     timezone="Local"
@@ -70,7 +70,7 @@ data:
       api_timing_histogram=true
 
     [join_server.default]
-    server="http://chirpstack-as.{{ .Release.Namespace }}:8003"
+    server="http://{{ .Release.Name }}-{{ .Values.appserver.service.name | default "chirpstack-as"  }}.{{ .Release.Namespace }}:8003"
     
 
 #    [geolocation_server]

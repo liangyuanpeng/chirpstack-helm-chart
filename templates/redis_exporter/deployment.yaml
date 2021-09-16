@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: redis-exporter
+  name: {{ .Release.Name }}-redis-exporter
   namespace: {{ .Release.Namespace }}
 spec:
   selector:
