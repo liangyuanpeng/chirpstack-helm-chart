@@ -14,10 +14,15 @@ spec:
         app: redis-exporter
     spec:
       terminationGracePeriodSeconds: 30
+      initContainers:
+        - name: wait-redis
+          image: busybox:1.31
+          imagePullPolicy: IfNotPresent
+          command: [ 'sh', '-c', 'until nslookup {{ .Release.Name }}-{{ .Values.redis.service.name | default "redis"  }}; do echo waiting for redis; sleep 2; done;' ]
       containers:
       - name: redis-exporter
         image: oliver006/redis_exporter:v1.14.0
         imagePullPolicy: IfNotPresent
         env:
         - name: redishost
-          value: {{ .Values.redis.service.name | default "redis"  }}
+          value: {{ .Release.Name }}-{{ .Values.redis.service.name | default "redis"  }}
