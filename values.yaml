@@ -4,18 +4,22 @@ gatewaybridge:
     enable: false
 
 mosquitto:
+  image: eclipse-mosquitto:1.6.12
   service:
     name: mosquitto
 
 appserver:
+  image: chirpstack/chirpstack-application-server:3
   service:
     name: chirpstack-as
 
 networkserver:
+  image: chirpstack/chirpstack-network-server:3
   service: 
     name: chirpstack-ns
 
 postgresql:
+  image: postgres:9.6-alpine
   service:
     name: pgsql
   spec:
@@ -28,6 +32,7 @@ postgresql:
             storage: 5G
 
 redis:
+  image: redis:6.0.9
   service:
     name: redis
   spec:
@@ -42,6 +47,7 @@ redis:
 
 exporter:
   redis:
+    image: oliver006/redis_exporter:v1.14.0
     service:
       name: redis-exporter
 

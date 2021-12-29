@@ -23,7 +23,7 @@ spec:
       terminationGracePeriodSeconds: 30
       containers:
       - name: pgsql
-        image: postgres:9.6-alpine
+        image: {{ .Values.postgresql.image }}
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 5432
@@ -45,8 +45,8 @@ spec:
   - metadata:
       name: pgsql-pvc
     spec:
-      accessModes: {{ .Values.redis.spec.volumeClaimTemplates.spec.accessModes }} #["ReadWriteOnce"]
-      storageClassName: {{ .Values.redis.spec.volumeClaimTemplates.spec.storageClassName }}
+      accessModes: {{ .Values.postgresql.spec.volumeClaimTemplates.spec.accessModes }} #["ReadWriteOnce"]
+      storageClassName: {{ .Values.postgresql.spec.volumeClaimTemplates.spec.storageClassName }}
       resources:
         requests:
-          storage: {{ .Values.redis.spec.volumeClaimTemplates.spec.resources.requests.storage }}
+          storage: {{ .Values.postgresql.spec.volumeClaimTemplates.spec.resources.requests.storage }}

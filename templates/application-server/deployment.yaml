@@ -37,7 +37,7 @@ spec:
         command: ['sh', '-c', 'until nslookup {{ .Release.Name }}-{{ .Values.postgresql.service.name | default "pgsql"  }}; do echo waiting for postgresql; sleep 2; done;']
       containers:
       - name: chirpstack-as
-        image: chirpstack/chirpstack-application-server:3
+        image: {{ .Values.appserver.image }}
         imagePullPolicy: IfNotPresent
         volumeMounts:
         - name: configfile

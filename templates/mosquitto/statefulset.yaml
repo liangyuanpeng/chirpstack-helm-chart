@@ -21,7 +21,7 @@ spec:
       terminationGracePeriodSeconds: 30 #default 30
       containers:
       - name: mosquitto
-        image: eclipse-mosquitto:1.6.12 #2.0.4
+        image: {{ .Values.mosquitto.image }}
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 1883

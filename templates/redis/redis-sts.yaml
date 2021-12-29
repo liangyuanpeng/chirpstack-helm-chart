@@ -23,7 +23,7 @@ spec:
       terminationGracePeriodSeconds: 30 #default 30
       containers:
       - name: redis
-        image: redis:6.0.9
+        image: {{ .Values.redis.image }}
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 6379
@@ -36,7 +36,7 @@ spec:
   - metadata:
       name: redis-pvc
     spec:
-      accessModes: {{ .Values.redis.spec.volumeClaimTemplates.spec.accessModes }} #["ReadWriteOnce"]
+      accessModes: {{ .Values.redis.spec.volumeClaimTemplates.spec.accessModes }}
       storageClassName: {{ .Values.redis.spec.volumeClaimTemplates.spec.storageClassName }}
       resources:
         requests:
