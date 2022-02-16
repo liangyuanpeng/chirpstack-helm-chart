@@ -7,6 +7,9 @@ mosquitto:
   image: eclipse-mosquitto:1.6.12
   service:
     name: mosquitto
+    type: ClusterIP
+    nodePort: 31883
+    stableNodePort: false
 
 appserver:
   image: chirpstack/chirpstack-application-server:3
@@ -55,3 +58,6 @@ chirpstack:
   common:
     nodeSelector:
       enabled: false
+
+pulsar:
+  enabled: false

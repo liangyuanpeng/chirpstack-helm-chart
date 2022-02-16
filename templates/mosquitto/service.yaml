@@ -9,6 +9,9 @@ spec:
   ports:
     - port: 1883
       name: mosquitto
-  type: ClusterIP
+      {{- if .Values.mosquitto.service.stableNodePort }}
+      nodePort: {{ .Values.mosquitto.service.nodePort }}
+      {{- end }}
+  type: {{ .Values.mosquitto.service.type }}
   selector:
     app: mosquitto
